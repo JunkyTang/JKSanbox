@@ -73,9 +73,20 @@ extension FileType {
 /// 编辑
 extension FileType {
     
-    func createSub(_ name: String) -> Bool {
+    func createFile(_ name: String) -> Bool {
         let subPath = self.path + "/" + name
         return FileManager.default.createFile(atPath: subPath, contents: nil)
+    }
+    
+    func createFolder(_ name: String) -> Bool {
+        
+        let subPath = self.path + "/" + name
+        do {
+            try FileManager.default.createDirectory(atPath: subPath, withIntermediateDirectories: true)
+            return true
+        } catch {
+            return false
+        }
     }
     
     func remove() -> Bool {

@@ -53,6 +53,53 @@ class FileMenuController: UIViewController {
     }()
     
     
+    lazy var fileNameFld: UITextField = {
+        let tmp = UITextField()
+        tmp.placeholder = "请输入新文件名称"
+        return tmp
+    }()
+    
+    lazy var sureBtn: UIButton = {
+        let tmp = UIButton(type: .roundedRect)
+        tmp.setTitle("确定", for: .normal)
+        tmp.addTarget(self, action: #selector(actionSure), for: .touchUpInside)
+        return tmp
+    }()
+    
+    @objc func actionSure() {
+        bar.isHidden = true
+        guard var name = fileNameFld.text else {
+            return
+        }
+        
+        let folderPre = name.hasPrefix("[")
+        let folderSub = name.hasSuffix("]")
+        let isFolder = folderPre && folderSub
+        if isFolder {
+            name.removeFirst()
+            name.removeLast()
+        }
+        
+        if name.count == 0 {
+            return
+        }
+        if isFolder {
+            model.createFolder(name)
+        }
+        else{
+            model.createFile(name)
+        }
+        refreshBlock?()
+    }
+    
+    
+    lazy var bar: UIView = {
+        let tmp = UIView()
+        tmp.backgroundColor = UIColor.white
+        tmp.isHidden = true
+        return tmp
+    }()
+    
     
     lazy var collect: UICollectionView = {
         
@@ -108,6 +155,28 @@ extension FileMenuController: UICollectionViewDelegate, UICollectionViewDataSour
             make.height.equalTo(rows * 54)
         }
         
+        
+        bar.addSubview(sureBtn)
+        sureBtn.snp.makeConstraints { make in
+            make.right.top.bottom.equalTo(0)
+            make.width.equalTo(80)
+            make.height.equalTo(44)
+        }
+        
+        bar.addSubview(fileNameFld)
+        fileNameFld.snp.makeConstraints { make in
+            make.left.equalTo(15)
+            make.right.equalTo(sureBtn.snp.left).offset(-15)
+            make.top.bottom.equalTo(0)
+        }
+        
+        
+        view.addSubview(bar)
+        bar.snp.makeConstraints { make in
+            make.left.right.equalTo(0)
+            make.bottom.equalTo(container.snp.top)
+        }
+        
     }
     
     
@@ -141,8 +210,7 @@ extension FileMenuController: UICollectionViewDelegate, UICollectionViewDataSour
 // action
 extension FileMenuController {
     func actionNew() {
-        model.createSub("1.txt")
-        refreshBlock?()
+        bar.isHidden = false
     }
     
     func actionRefresh() {
@@ -154,6 +222,7 @@ extension FileMenuController {
         
         model.remove()
         refreshBlock?()
+        hide()
     }
     
     
