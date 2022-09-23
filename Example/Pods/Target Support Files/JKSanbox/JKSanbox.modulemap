@@ -1,0 +1,6 @@
+framework module JKSanbox {
+  umbrella header "JKSanbox-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '10.0'
+
+target 'JKSanbox_Example' do
+  pod 'JKSanbox', :path => '../'
+
+  target 'JKSanbox_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

@@ -1,0 +1,23 @@
+PODS:
+  - JKSanbox (0.1.0):
+    - SnapKit
+  - SnapKit (5.6.0)
+
+DEPENDENCIES:
+  - JKSanbox (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - SnapKit
+
+EXTERNAL SOURCES:
+  JKSanbox:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  JKSanbox: 7bf10ae5ac865eb5a9f0e8434506bb0c85ee62d5
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+
+PODFILE CHECKSUM: 1d1023612728e83c2cc2ab35843ab0bf976dea08
+
+COCOAPODS: 1.11.3
