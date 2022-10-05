@@ -107,10 +107,11 @@ extension SanBoxController: UITableViewDataSource, UITableViewDelegate {
     func refreshData() {
         title = model.name
         list = model.subList
-        print(">>>>>>>>>>>>>>><<<<<<<<<<<<<<<")
-        print(model.attribute)
-        print(model.isDirectory)
-        print(">>>>>>>>>>>>>>><<<<<<<<<<<<<<<")
+        JKSanbox.log?(">>>>>>>>>>>>>>><<<<<<<<<<<<<<<")
+        JKSanbox.log?(model.path)
+        JKSanbox.log?(model.attribute)
+        JKSanbox.log?(model.isDirectory)
+        JKSanbox.log?(">>>>>>>>>>>>>>><<<<<<<<<<<<<<<")
         table.reloadData()
     }
     

@@ -17,6 +17,15 @@ public struct JKSanbox {
     public static func getSanBoxVC() -> UIViewController {
         return SanBoxController()
     }
+    
+    
+    public static var log:((_ items: Any) -> Void)? = defoultLog(_:)
+    
+    static func defoultLog(_ items: Any) {
+        print("[JKSanbox]", items)
+    }
+    
+    
 }
 
 

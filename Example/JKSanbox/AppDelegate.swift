@@ -18,6 +18,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        // log开关
+//        JKSanbox.log = nil
+        
         let navi = UINavigationController(rootViewController: JKSanbox.getSanBoxVC())
         
         
