@@ -256,6 +256,9 @@ struct FileActionModel {
         var result: [FileActionModel] = []
         
         if file.isDirectory {
+            if FileManager.default.isDeletableFile(atPath: file.path) {
+                result.append(FileActionModel(name: "删除", method: target.actionDelete))
+            }
             result.append(FileActionModel(name: "新建", method: target.actionNew))
             result.append(FileActionModel(name: "刷新", method: target.actionRefresh))
             if let _ = FileMenuController.fileWillBeMove {
